@@ -1,0 +1,14 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method= 'POST' action= "{% url 'checkout' %}">
+        {% csrf_token %}
+{{form_keys.as_p}}
+    </form>
+    <button type ="submit" value= "Enter"> submit </button> 
+</body>
+</html>

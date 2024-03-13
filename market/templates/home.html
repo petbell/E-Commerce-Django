@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>title</title>
+</head>
+<body>
+    <h2></h2>
+
+    <ul>{% for product  in products %}
+        <li>
+            <a href="">{{product.name}} </a>
+    <p> {{product.price}} - {{product.description}}
+            <a href="{% url 'add_to_cart' product.id %}">add to cart</a>
+            {{product.id}} # {{item.quantity}}
+            <button type="submit" value="submit">Remove</button>
+            <button type="submit" value="submit">Add</button>
+        </li>
+        {% endfor %}
+    </ul>
+
+    
+</body>
+</html>

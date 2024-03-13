@@ -1,0 +1,23 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% block content %}
+    {{form.name.errors}}
+{{product_keys}}
+
+    <form method= "POST" action= "">
+        {% csrf_token %}
+{{form_keys.as_p}}
+<button type="submit" value= "submit"> submit </button>
+    </form>
+    
+     
+
+    {{form.non_field_errors}}
+    {% endblock content %}
+</body>
+</html>
