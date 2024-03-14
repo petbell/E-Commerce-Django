@@ -43,6 +43,7 @@
         </tbody>
     </table>
     <p><h5>${{cart.total_amount}} </h5> </p>
+    <p><h4>You have {{cart.num_of_items}} items in your cart </h4> </p>
 
 <form method="POST" action="">
     {%csrf_token%}

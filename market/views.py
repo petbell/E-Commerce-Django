@@ -12,11 +12,17 @@ secretKey = settings.FLW_SECRET_KEY
 
 # Create your views here.
 def home(request):
+    
+        
     products = Product.objects.all()
     print (products)
-    
+    #cart_items = []
+    cart, created = Carts.objects.get_or_create(user = request.user)
+    cart_items = cart.cartitem_set.all()
     print (request)
-    return render(request, 'home.html', {'products': products})
+    print (cart_items)
+    print(cart)
+    return render(request, 'home.html', {'products': products, 'cart_items': cart_items, 'cart':cart})
 
 def checkout(request,):
     data = Carts.objects.get(user=request.user)
@@ -30,12 +36,14 @@ def add_to_cart(request, product_id):
     if not created:
         cart_item.quantity += 1
         cart_item.save()
-    return redirect('cart')
+    #return redirect('cart')
+    return redirect('home')
 
 def remove_from_cart(request, cart_item_id):
     cart_item = CartItem.objects.get(pk=cart_item_id)
     cart_item.delete()
-    return redirect('cart')
+    #return redirect('cart')
+    return redirect ('home')
 
 def cart(request):
     cart, created = Carts.objects.get_or_create(user = request.user)
@@ -69,15 +77,17 @@ def cart(request):
     else:
         
         form = CheckoutForm()
-
+        
         """qr = qrcode.make('http://localhost:8000/market/cart/')
         qr.save("media/qr.png", scale=10, fill_color = 'lightblue', dark_color = 'red')    
-           """ 
+           """
     
     
     print (cart_items)
     print (cart.total_amount)
     return render(request, 'cart.html', {'cart_items': cart_items, 'cart': cart , 'form_keys': form})
+        
+    #return render(request, 'cart.html', {'cart_items': cart_items, 'cart': cart })
 
 def process_payment (name, email, amount, phone, currency, tx_ref):
     # leave no space and remove quotes in the .env file
