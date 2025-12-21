@@ -213,3 +213,7 @@ __marimo__/
 venv/
 .db
 .json
+
+/images/payments/
+**/media/*
+*.sqlite3
