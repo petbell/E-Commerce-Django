@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-*gnv^t2)6eiu^v5)_n9*=)2mm3ut2^88*k8e1$ilyn@es5yr+6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -88,6 +88,7 @@ DATABASES = {
 }
 
 
+
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
@@ -137,3 +138,17 @@ CART_SESSION_ID = 'cart'
 env = environ.Env()
 environ.Env.read_env(os.path.join( BASE_DIR/ '.env'))
 FLW_SECRET_KEY = env('SECRET_KEY')
+FLW_SECRET_HASH = env('FLW_SECRET_HASH')
+
+# In settings.py
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Email settings
+# Email configuration for Gmail
+#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'peteroebello@gmail.com'  # Your email
+EMAIL_HOST_PASSWORD = 'i12poseBello'  # Your email password or app-specific password
+DEFAULT_FROM_EMAIL = 'peteroebello@gmail.com'  # Default email sender address

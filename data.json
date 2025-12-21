@@ -1,0 +1,36 @@
+{
+    "id": 8313149,
+    "tx_ref": "Order9419629",
+    "flw_ref": "9110981259771736338142132",
+    "device_fingerprint": "31f69e1f6eb8503029da0ac6b0d36a82",
+    "amount": 125,
+    "currency": "NGN",
+    "charged_amount": 125,
+    "app_fee": 1.75,
+    "merchant_fee": 0,
+    "processor_response": "success",
+    "auth_model": "AUTH",
+    "ip": "52.209.154.143",
+    "narration": "Peter Bello 1707654863231",
+    "status": "successful",
+    "payment_type": "bank_transfer",
+    "created_at": "2025-01-08T12:09:09.000Z",
+    "account_id": 2449393,
+    "meta": {
+        "__CheckoutInitAddress": "https://checkout-v2.dev-flutterwave.com/v3/hosted/pay",
+        "consumer_id": "23",
+        "consumer_mac": "92a3-912ba-1192a",
+        "originatoraccountnumber": "123*******90",
+        "originatorname": "JOHN DOE",
+        "bankname": "Access Bank",
+        "originatoramount": "N/A"
+    },
+    "amount_settled": 123.25,
+    "customer": {
+        "id": 2569127,
+        "name": "Faith Xavier",
+        "phone_number": "8045643267",
+        "email": "legendnikky@gmail.com",
+        "created_at": "2025-01-07T23:45:17.000Z"
+    }
+}

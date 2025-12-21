@@ -1,0 +1,543 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
+    color: #eee;
+    padding: 0;
+    margin: 0;
+    /*background-color: olivedrab; */
+}
+
+body {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*clear: both;
+    width: 100%;
+    padding: 0; */
+    /*background-color:#350435;*/
+    background-color:#ecdfec;
+    background-size: cover;
+    
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+
+header {
+    position: absolute;
+    /*background-color:chartreuse; */
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    padding: 20px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 99;
+    }
+
+    .logo {
+        font-size: 2em;
+        color: #eee;
+        user-select: none;
+    }
+
+nav {
+    position: relative;
+    }
+
+nav a {
+    position: relative;
+    /* this position rule above is neccesary to create 
+     that underline hover effect on your a tags 
+     it took me 2 hours to figure out*/
+    margin-left: 40px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #eee;
+    font-weight: 600;
+    margin: 0 20px;
+    
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    left: 0;
+    height: 3px;
+    background: #eee;
+    border-radius: 5px;
+    bottom: -4px;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform 1s;
+}
+
+nav a:hover:after {
+    transform-origin: left;
+    transform: scaleX(1);
+}
+
+nav a:hover {
+   color: violet;
+  } 
+
+
+nav :nth-last-child(1)::after{
+    
+    width: 0;
+}
+
+
+
+.btnlogin-popup {
+    width: 130px;
+    height: 40px;
+    margin-left: 40px;
+    padding: 5px 25px ;
+    background-color: transparent;
+    outline: none;
+    font-size: 1.1em;
+    color: #eee;
+    border: 2px solid;
+    border-radius: 60px;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.btnlogin-popup:hover {
+background-color: #eee;
+color: #350435;
+}
+
+.errmessages {
+color: red;
+text-emphasis-color: maroon;
+font-size:1.5em;
+font-weight: 500;
+text-indent: inside;
+}
+
+
+#content {
+    position: relative;
+    background-color:transparent;
+    padding-top: 20px;
+    display: flex;
+    /*justify-content: center;
+    align-items: center; */
+    margin-bottom: 344px;
+   margin-top: 121px;
+   height: fit-content;
+
+    
+}
+
+#content .topline {
+    position: absolute;
+    top: 20px;
+    left: 7%;
+    width: 100%;
+    border-bottom: solid;
+    border-color:rgb(230, 44, 189);
+    border-width: 5px;
+    margin-top: 0px;
+    
+}
+
+#middlediv {
+    width: 800px;
+    height: fit-content;
+    background-color:transparent;
+    margin-left: 30px;
+    border-left:solid violet;
+    border-width: 5px;
+    /*border-left: #1b1636; */
+    margin-top: -30px;
+    padding-left: 30px;
+    padding-top: 35px;
+
+
+}
+
+#middlediv p {
+
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+#middlediv .btnlogin-popup {
+    margin-top: 50px;
+}
+
+.wrapper {
+    position: relative;
+    width: 400px;
+    height: 440px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0,0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* because of the close button in span below */
+    /* later disabled when working on registration form */
+   overflow: hidden;
+}
+
+.wrapper .icon-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: hsl(206, 46%, 85%);
+    width: 45px;
+    height: 45px;
+    font-size: 2em;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 20px;
+    cursor: pointer;
+    z-index: 1;
+    
+
+
+
+}
+
+.wrapper .form-box {
+    width: 100%;
+    padding: 40px;
+
+}
+
+.form-box h2 {
+    font-size: 2em;
+color: hsl(206, 46%, 85%);
+text-align: center;
+}
+
+.formtext {
+/* #middlediv form p input [type=number] {
+    width: 100%;
+    height: 100%;
+    font-size: 1em;
+    background: transparent;
+    border: none;
+    outline: none; */
+    font-size: 1em;
+    color: #160110;
+    font-weight: 500;
+    padding: 0px 35px 0px 5px;
+    }
+
+    .input-box {
+        position: relative;
+        color: hsl(206, 46%, 85%);
+        width: 100%;
+        height: 50px;
+        border-bottom: 2px solid hsl(206, 46%, 85%);
+        margin: 30px;
+    }
+    
+    .input-box label {
+        position: absolute;
+        top: 50%;
+        left: 5px;
+        transform: translateY(-50%);
+        font-size: 1em;
+        color: hsl(206, 46%, 85%);
+        font-weight: 500;
+        pointer-events: none;
+        transition: .5s;
+    }
+    
+    .input-box input:focus~label,
+    .input-box input:valid~label {
+        /* after input box icon */
+        /* followed by transition above */
+        top: -5px;
+    }
+    
+    .input-box input {
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        border: none;
+        outline: none;
+        font-size: 1em;
+        color: hsl(206, 46%, 85%);
+        font-weight: 500;
+        padding: 0 35px 0 5px;
+    }
+    
+    .input-box .icon {
+        position: absolute;
+        right: 8px;
+        font-size: 1.2em;
+        color: hsl(206, 46%, 85%);
+        line-height: 57px;
+        
+    }
+
+    .remember-forgot {
+        font-size: 0.9em;
+        color: hsl(206, 46%, 85%);
+        font-weight: 500;
+        margin: -15px 0 15px;
+        display: flex;
+        justify-content: space-between;
+    
+    }
+    
+    .remember-forgot label input {
+        accent-color: hsl(206, 46%, 85%);
+        margin-right: 3px;
+    }
+    
+    .remember-forgot a {
+        color: hsl(206, 46%, 85%);
+        text-decoration: none;
+    }
+    
+    .remember-forgot a:hover{
+        text-decoration: underline;
+    }
+    
+    .btn {
+        width: 100%;
+        height: 45px;
+        color: #fff;
+        font-size: 1em;
+        font-weight: 500;
+        background: hsl(206, 46%, 85%);
+        border: none;
+        outline: none;
+        border-radius: 20px;
+    }
+    
+    .login-register {
+        font-size: .9em;
+        color: hsl(206, 46%, 85%);
+        text-align: center;
+        font-weight: 500;
+        margin: 25px 0 10px;
+    }
+    
+    .login-register p a {
+        text-decoration: none;
+        font-weight: 600;
+        color: hsl(206, 46%, 85%);
+    }
+    
+    .login-register p a:hover {
+        text-decoration: underline;
+    }
+    
+
+
+
+.animate {
+    /* the aim is to precisely locate the .topline tag up */
+    position: absolute;
+    top: 20px;
+    left: 7%;
+    width: 100%;
+    height: 5px;
+    border-bottom: 100%;
+    background:#350435;
+    animation: show-left 5s ease-in-out forwards;
+    
+    
+}
+
+#middlediv .form-box {
+    width: 100%;
+    padding: 40px;
+}
+
+
+
+/*ANIMATION KEYFRAMES */
+@keyframes show-left {
+    100% {
+        width: 0;
+    }
+    }
+
+
+footer {
+        width: 100%;
+        position:absolute;
+        bottom: 0;
+        right: 0;
+        background: linear-gradient(to right, #691883, #2d0b00);
+        color: #fff;
+        padding: 20px, 0, 10px;
+        border-top-left-radius: 125px;
+        border-bottom-right-radius: 75px;
+        font-size: 12px;
+        line-height: 20px;
+        align-self: flex-end;
+        
+        }
+    
+.row {
+        width: 85%;
+        margin: auto;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: space-between;
+        }
+    
+.col {
+            flex-basis: 25%;
+            padding: 5px 15px;
+        }
+    
+.col:nth-child(2), .col:nth-child(3) {
+        flex-basis: 15%;
+    }
+    
+    .logo {
+    width: 80%;
+    margin-bottom: 3px;
+            }
+    
+.col h3 {
+        width: fit-content;
+        margin-bottom: 10px;
+        position: relative;
+    }
+    
+.email-id {
+        width: fit-content;
+        border-bottom: 1px solid #ccc;
+        margin: 5px 10px;
+    }
+    
+ul li {
+        list-style: none;
+        margin-bottom: 1px;
+    }
+    
+ul li a {
+        text-decoration: none;
+        columns: #fff;
+    }
+    
+footer form {
+        padding-bottom: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom:  1px solid |#ccc;
+        margin-bottom : 10px;
+    }
+    
+footer form .fa {
+        margin-right: 10px;
+        font-size: 14px;
+    }
+    
+footer form input {
+        width: 100%;
+        background: transparent;
+        /*color: #ccc;*/
+        border: 0;
+        outline: none;
+        border-radius: 12px;
+        margin-left: 20px;
+        height: 1em;
+    }
+    
+footer form button {
+        background: transparent;
+        border: 0;
+        outline: none;
+        cursor: pointer;
+        color: #ccc;
+    }
+    
+footer .social-icons .fa-brands {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+        text-align: center;
+        border-radius: 50px;
+        line-height: 40px;
+        color: #000;
+        background: #fff;
+        margin-right: 15px;
+        cursor: pointer;
+    }
+    
+footer hr {
+        width: 90%;
+        border: 0;
+        border-bottom: 1px solid #ccc;
+        margin: 5px auto;
+    }
+    
+.copyright {
+        text-align: center;
+    }
+    
+.copyright p {
+        margin-top: 2px ;
+    }
+.underline {
+        width: 100%;
+        height: 5px;
+        border-radius: 3px;
+        background: #767676;
+        position: absolute;
+        top: 18px;
+        left: 0;
+        overflow: hidden;
+        }
+    
+.underline span {
+        width: 15px;
+        height: 100%;
+        border-radius: 3px;
+        background: #fff;
+        position: absolute;
+        top: 0;
+        left: 10px;
+        animation: moving 2s linear infinite;
+        }
+    
+@keyframes moving {
+        0% {
+            left: -20%;
+        }
+    
+        100% {
+            left: 100%;
+        }
+    }
+    
+@media (max-width : 700px) {
+        footer {
+            bottom: unset;
+        }
+    
+        .col {
+            flex-basis: 100%;
+        }
+    
+        .col:nth-child(2), .col:nth-child(3) {
+            flex-basis: 100%;
+        }
+    }

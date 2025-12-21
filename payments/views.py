@@ -124,7 +124,7 @@ def payment_response(request):
     status=request.GET.get('status', None)
     tx_ref=request.GET.get('tx_ref', None)
     id = request.GET.get('transaction_id', None)
-    amount = request.data.GET.get ('amount', None)
+    amount = request.GET.get ('amount', None)
     
     payload = {"id": id}
     print(status)
@@ -143,6 +143,7 @@ def payment_response(request):
        # transaction_details = 
     print (amount)
     #sup = json.loads(request.body)
+    print (request)
     
     
     

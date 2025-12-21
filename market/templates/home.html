@@ -1,26 +1,32 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8" />
-    <title>title</title>
-</head>
-<body>
-    <h2></h2>
+{% extends "Djangobase1.html" %}
+
+{% block title %}
+Products Page
+{% endblock title %}
+       
+
+{% block content %}
+<div class= "table-container">
+<div class="products-table">
+    <!-- Products table here -->
+
+    <h2>Products</h2>
 
     <ul>{% for product  in products %}
         <li>
-            <a href="">{{product.name}} </a>
+            <h4><a href="#">{{product.name}} </a></h4>
     <p> {{product.price}} - {{product.description}}
             <a href="{% url 'add_to_cart' product.id %}">add to cart</a>
-            {{product.id}} # {{item.quantity}}
-            <button type="submit" value="submit">Remove</button>
-            <button type="submit" value="submit">Add</button>
+            {{product.id}}  {{item.quantity}}
+            <!-- <button type="submit" value="submit">Remove</button> -->
+            <button type="submit" value="submit" onclick="location.href= '{% url 'add_to_cart' product.id %}'">Add</button>
         </li>
         {% endfor %}
     </ul>
 
-
-
+</div>
+<div class="cart-table">
+<!-- <div class = "shopcart"> -->
     <h1>Shopping Cart</h1>
     <table>
         <thead>
@@ -42,7 +48,7 @@
                     <td>${{cart_item.total_price}}</td>    
                     
                     
-                    <td> {{cart_item.product.name}}</td>
+                    
                     <td>
                         <form action="{% url 'remove_from_cart' cart_item.id %}" method="post">
                             {% csrf_token %}
@@ -57,13 +63,12 @@
     </table>
     <p><h5>${{cart.total_amount}} </h5> </p>
     <p><h4>You have {{cart.num_of_items}} items in your cart </h4> </p>
-
-<form method="GET" action="{% url 'cart' %}">
-    {%csrf_token%}
-
-    <button type="submit"> Check Out Cart</button>
-</form>
-
+    <form method="GET" action="{% url 'cart' %}">
+        {%csrf_token%}
     
-</body>
-</html>
+        <button type="submit"> Check Out Cart</button>
+    </form>
+</div>
+
+</div>
+    {% endblock content%}

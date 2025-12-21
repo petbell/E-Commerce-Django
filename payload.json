@@ -1,0 +1,30 @@
+{
+    "event": "charge.completed",
+    "data": {
+        "id": 8313149,
+        "tx_ref": "Order9419629",
+        "flw_ref": "9110981259771736338142132",
+        "device_fingerprint": "31f69e1f6eb8503029da0ac6b0d36a82",
+        "amount": 125,
+        "currency": "NGN",
+        "charged_amount": 125,
+        "app_fee": 1.75,
+        "merchant_fee": 0,
+        "processor_response": "success",
+        "auth_model": "AUTH",
+        "ip": "52.209.154.143",
+        "narration": "Peter Bello 1707654863231",
+        "status": "successful",
+        "payment_type": "bank_transfer",
+        "created_at": "2025-01-08T12:09:09.000Z",
+        "account_id": 2449393,
+        "customer": {
+            "id": 2569127,
+            "name": "Faith Xavier",
+            "phone_number": "8045643267",
+            "email": "legendnikky@gmail.com",
+            "created_at": "2025-01-07T23:45:17.000Z"
+        }
+    },
+    "event.type": "BANK_TRANSFER_TRANSACTION"
+}

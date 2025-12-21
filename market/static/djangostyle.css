@@ -1,0 +1,701 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+
+* {
+    /**font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  **/
+    font-family: "Montserrat";
+    box-sizing: border-box;
+    color: #eee;
+    padding: 0;
+    margin: 0;
+    /*background-color: olivedrab; */
+}
+
+body {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*clear: both;
+    width: 100%;
+    padding: 0; */
+    background-color:#350435;
+    /*background-color:#ecdfec;*/
+    background-size: cover;
+    
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 5px 100px 10px 50px;
+    /* remove background after finishing with body */
+    background: #691883;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    z-index: 9;
+}
+
+.logo {
+    font-size: 2em;
+    color: #fff;
+    user-select: none;
+}
+
+.navigation {
+    margin-left: 37%;
+    padding-right: 50px;
+    min-width: fit-content;
+    display: inline-block;
+    justify-content: space-evenly ;
+    align-items: center;
+    }
+
+
+
+.navigation a  {
+    position: relative;
+    font-size: 1.1em;
+    color: #fff;
+    font-weight: 500;
+    text-decoration: none;
+    margin-left: 40px;
+    right: 400px;
+    align-self: center;
+    top: 30px;
+    white-space: nowrap; 
+        display: inline;
+}
+
+.navigation a::after  {
+    position: absolute;
+    content:' ';
+    left: 0px;
+    bottom: -6px;
+    width: 100%;
+    height: 3px;
+    background: #fff;
+    border-radius: 5px;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform .5s;
+}
+
+.navigation a:hover::after {
+    transform-origin: left;
+    transform: scaleX(1);
+
+}
+
+.navigation .btnlogin-popup {
+    width: 130px;
+    height: 40px;
+    background: transparent;
+    border: 2px solid;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    color: #fff;
+    font-weight: 500;
+    margin-left: 400px;
+    /*after .navigation .btnlogin-popup:hover
+ */
+ transition: 0.5s;
+ margin-bottom: 10px;
+}
+
+.navigation .btnlogin-popup:hover {
+    background: #fff;
+    color: #162938;
+}
+
+
+
+
+.errmessages {
+color: red;
+text-emphasis-color: maroon;
+font-size:1.5em;
+font-weight: 500;
+text-indent: inside;
+}
+
+
+#content {
+    position: relative;
+    background-color:transparent;
+    padding-top: 20px;
+    display: flex;
+    /*justify-content: center;
+    align-items: center; */
+    margin-bottom: 344px;
+   margin-top: 121px;
+   height: fit-content;
+
+    
+}
+#content button {
+    background-color: #9c0b90; /* Blue background */
+    border: none;
+    color: white;
+    padding: 5px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+    box-shadow: 0 9px #240121; /* Shadow for 3D effect */
+  }
+  
+  #content button:active {
+    background-color: #006080; /* Darker shade when clicked */
+    box-shadow: 0 5px #666;    /* Smaller shadow on click */
+    transform: translateY(4px); /* Move button down */
+  }
+
+  #content button:hover {
+    background-color: #da74b8; /* Darker green on hover */
+  }
+  
+            
+  
+
+#content .topline {
+    position: absolute;
+    top: 20px;
+    left: 7%;
+    width: 100%;
+    border-bottom: solid;
+    border-color:rgb(230, 44, 189);
+    border-width: 5px;
+    margin-top: 0px;
+    
+}
+
+.shopcart {
+    width: 40%;
+    padding-left: 10px;
+    float:right;
+    position: relative;
+
+}
+
+#leftdiv {
+    position:absolute;
+    width: 5%;
+    top: 0;
+    left: 0;
+    
+}
+
+#middlediv {
+    display: flex;
+    flex-direction: column;
+    width: 800px;
+    height: fit-content;
+    background-color:transparent;
+    margin-left: 30px;
+    border-left:solid #350435;
+    border-width: 5px;
+    /*border-left: #1b1636; */
+    margin-top: -30px;
+    padding-left: 30px;
+    padding-top: 35px;
+    justify-content: space-between;
+
+
+}
+
+#middlediv p {
+
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+#middlediv .btnlogin-popup {
+    margin-top: 50px;
+}
+
+.table-container {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    margin-right: 20px;
+    justify-content:space-evenly;
+}
+
+.products-table, .cart-table {
+    width: 100%;
+    margin-left: 40px;
+}
+
+.wrapper {
+    position: relative;
+    width: 400px;
+    height: fit-content; /*440px */
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0,0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* because of the close button in span below */
+    /* later disabled when working on registration form */
+   overflow: hidden;
+}
+
+
+.wrapper .icon-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: hsl(307, 100%, 5%);
+    width: 45px;
+    height: 45px;
+    font-size: 2em;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 20px;
+    cursor: pointer;
+    z-index: 1;
+    
+
+
+
+}
+
+.wrapper .form-box {
+    width: 100%;
+    padding: 40px;
+
+}
+
+.wrapper .form-box.login{
+    /* disable this after .wrapper .form-box.register   */  
+    /* remember it was hidden when designing the register form */
+        /*display: none;*/
+        /*the following comes after doing .wrapper.active .form-box.login below */
+        transition: transform 2s ease;
+        transform: translateX(0);
+    }
+    /* contiue from above after js scripting */
+
+    /* the following would be uncommented to make swapping forms on one page */
+/*.wrapper.active .form-box.login {
+        transition: none;
+        transform: translateX(-400px);
+    
+    } 
+    
+    
+
+.wrapper .form-box.register {
+    position: absolute;
+    transition: none;
+    transform: translateX(400px);
+    
+} */
+
+
+
+.wrapper.active .form-box.register {
+    /* just copy .wrapper .form-box.login  */  
+/* then add transition: none to the above rule */
+    transition: transform 1s ease;
+    transform: translateX(0);
+}
+
+
+.form-box h2 {
+    font-size: 2em;
+color: hsl(206, 46%, 85%);
+text-align: center;
+}
+
+
+.formtext {
+/* #middlediv form p input [type=number] {
+    width: 100%;
+    height: 100%;
+    font-size: 1em;
+    background: transparent;
+    border: none;
+    outline: none; */
+    font-size: 1em;
+    color: #160110;
+    font-weight: 500;
+    padding: 0px 35px 0px 5px;
+    }
+
+    .input-box {
+        position: relative;
+        color: hsl(206, 46%, 85%);
+        width: 100%;
+        height: 50px;
+        border-bottom: 2px solid hsl(206, 46%, 85%);
+        margin: 30px;
+    }
+    
+    .input-box label {
+        position: absolute;
+        top: 50%;
+        left: 5px;
+        transform: translateY(-50%);
+        font-size: 1em;
+        color: hsl(206, 46%, 85%);
+        font-weight: 500;
+        pointer-events: none;
+        transition: .5s;
+    }
+    
+    .input-box input:focus~label,
+    .input-box input:valid~label {
+        /* after input box icon */
+        /* followed by transition above */
+        top: -5px;
+    }
+    
+    .input-box input {
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        border: none;
+        outline: none;
+        font-size: 1em;
+        color: hsl(206, 46%, 85%);
+        font-weight: 500;
+        padding: 0 35px 0 5px;
+    }
+    
+    .input-box .icon {
+        position: absolute;
+        right: 8px;
+        font-size: 1.2em;
+        color: hsl(206, 46%, 85%);
+        line-height: 57px;
+        
+    }
+
+    .remember-forgot {
+        font-size: 0.9em;
+        color: hsl(206, 46%, 85%);
+        font-weight: 500;
+        margin: -15px 0 15px;
+        display: flex;
+        justify-content: space-between;
+    
+    }
+    
+    .remember-forgot label input {
+        accent-color: hsl(206, 46%, 85%);
+        margin-right: 3px;
+    }
+    
+    .remember-forgot a {
+        color: hsl(206, 46%, 85%);
+        text-decoration: none;
+    }
+    
+    .remember-forgot a:hover{
+        text-decoration: underline;
+    }
+    
+    .btn {
+        width: 100%;
+        height: 45px;
+        color: #fff;
+        font-size: 1em;
+        font-weight: 500;
+        background: hsl(206, 46%, 85%);
+        border: none;
+        outline: none;
+        border-radius: 20px;
+    }
+    
+    .login-register {
+        font-size: .9em;
+        color: hsl(206, 46%, 85%);
+        text-align: center;
+        font-weight: 500;
+        margin: 25px 0 10px;
+    }
+    
+    .login-register p a {
+        text-decoration: none;
+        font-weight: 600;
+        color: hsl(206, 46%, 85%);
+    }
+    
+    .login-register p a:hover {
+        text-decoration: underline;
+    }
+    
+    #content .topline {
+        position: absolute;
+        top: 20px;
+        left: 7%;
+        width: 100%;
+        border-bottom: solid;
+        border-color:rgb(230, 44, 189);
+        border-width: 5px;
+        margin-top: 0px;
+        
+    }
+
+
+.animate {
+    /* the aim is to precisely locate the .topline tag up */
+    position: absolute;
+    top: 20px;
+    left: 7%;
+    width: 100%;
+    height: 5px;
+    border-bottom: 100%;
+    background:#350435;
+    animation: show-left 5s ease-in-out forwards;
+    
+    
+}
+
+#middlediv .form-box {
+    width: 100%;
+    padding: 40px;
+}
+
+
+
+/*ANIMATION KEYFRAMES */
+@keyframes show-left {
+    100% {
+        width: 0;
+    }
+    }
+
+/* table style */
+.wrapper tbody tr {
+    border: 1px solid magenta;
+}
+
+tbody tr:nth-child(odd){
+    background-color: turquoise;
+
+}
+
+table thead th {
+    align-self: center;
+    color: bisque;
+    font-weight: 700;
+    text-align: center;
+    background-color: magenta;
+    } 
+
+
+footer {
+        width: 100%;
+        position:absolute;
+        bottom: 0;
+        right: 0;
+        background: linear-gradient(to right, #691883, #2d0b00);
+        color: #fff;
+        padding: 20px, 0, 10px;
+        border-top-left-radius: 125px;
+        border-bottom-right-radius: 75px;
+        font-size: 12px;
+        line-height: 20px;
+        align-self: flex-end;
+        
+        }
+    
+.row {
+        width: 85%;
+        margin: auto;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: space-between;
+        }
+    
+.col {
+            flex-basis: 25%;
+            padding: 5px 15px;
+        }
+    
+.col:nth-child(2), .col:nth-child(3) {
+        flex-basis: 15%;
+    }
+    
+    .logo {
+    width: 80%;
+    margin-bottom: 3px;
+            }
+    
+.col h3 {
+        width: fit-content;
+        margin-bottom: 7px;
+        position: relative;
+    }
+    
+.email-id {
+        width: fit-content;
+        border-bottom: none;
+        margin: 5px 0px;
+    }
+    
+ul li {
+        list-style: none;
+        margin-bottom: 1px;
+    }
+    
+ul li a {
+        text-decoration: none;
+        columns: #fff;
+    }
+    
+footer form {
+        padding-bottom: 7px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom:  1px solid #ccc;
+        margin-bottom : 10px;
+        
+    }
+    
+footer form .fa {
+        margin-right: 10px;
+        font-size: 14px;
+    }
+    
+footer form input {
+        width: 100%;
+        background: transparent;
+        /*color: #ccc;*/
+        border: 0;
+        outline: none;
+        border-radius: 12px;
+        margin-left: 20px;
+        height: 1em;
+    }
+    
+footer form button {
+        background: transparent;
+        border: 0;
+        outline: none;
+        cursor: pointer;
+        color: #ccc;
+    }
+    
+footer .social-icons .fa-brands {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+        text-align: center;
+        border-radius: 50px;
+        line-height: 40px;
+        color: #000;
+        background: #fff;
+        margin-right: 15px;
+        cursor: pointer;
+    }
+    
+footer hr {
+        width: 90%;
+        border: 0;
+        border-bottom: 1px solid #ccc;
+        margin: 2px auto;
+    }
+    
+.copyright {
+        text-align: center;
+    }
+    
+.copyright p {
+        margin-top: 2px ;
+    }
+.underline {
+        width: 100%;
+        height: 5px;
+        border-radius: 3px;
+        background: #767676;
+        position: absolute;
+        top: 18px;
+        left: 0;
+        overflow: hidden;
+        }
+    
+.underline span {
+        width: 15px;
+        height: 100%;
+        border-radius: 3px;
+        background: #fff;
+        position: absolute;
+        top: 0;
+        left: 10px;
+        animation: moving 2s linear infinite;
+        }
+
+        
+/* animation for middlediv left border */
+.animcontent{
+    position: absolute;
+    
+    width: 5px;
+    height:calc(100% + 10px);
+    /* background-color:salmon; */
+    margin-left: -35px; 
+    border-left:solid violet;
+    border-width: 5px;
+    content: '';
+    animation: load-up  6s ease-in-out reverse forwards;
+    animation: name duration timing-function delay iteration-count direction fill-mode;
+    bottom: 0;
+   
+        
+        
+}
+@keyframes moving {
+        0% {
+            left: -20%;
+        }
+    
+        100% {
+            left: 100%;
+        }
+    }
+
+    @keyframes load-up {
+        100% {
+            /*scale: 1; */
+            height: 0%;
+            
+        }
+
+        
+    }
+    
+@media (max-width : 700px) {
+        footer {
+            bottom: unset;
+        }
+    
+        .col {
+            flex-basis: 100%;
+        }
+    
+        .col:nth-child(2), .col:nth-child(3) {
+            flex-basis: 100%;
+        }
+    }

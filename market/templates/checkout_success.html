@@ -1,8 +1,13 @@
-<html>
-    <body>
+{% extends "Djangobase1.html" %}
+
+{% block title %}
+Transaction Successfull
+{% endblock title %}
+       
+
+{% block content %}
         <p><h2> it workrd!</h2></p>
         <p> Your &#8358 {{order_keys.amount}} &#x20A6 order with transaction reference: {{order_keys.tx_ref}} was {{order_keys.status}}.
          If you have any enquiries, click <a href= "mailto:peteroebello@gmail.com">here</a> to send us a mail </p>
          <p> Want to make more <a href="{% url 'home' %} ">orders</a>? 
-    </body>
-    </html> 
+   {% endblock content %} 
