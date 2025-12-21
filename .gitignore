@@ -212,7 +212,7 @@ __marimo__/
 .env
 venv/
 .db
-.json
+*.json
 
 /images/payments/
 **/media/*
