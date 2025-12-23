@@ -141,14 +141,14 @@ FLW_SECRET_KEY = env('SECRET_KEY')
 FLW_SECRET_HASH = env('FLW_SECRET_HASH')
 
 # In settings.py
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Email settings
 # Email configuration for Gmail
-#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'peteroebello@gmail.com'  # Your email
-EMAIL_HOST_PASSWORD = 'i12poseBello'  # Your email password or app-specific password
-DEFAULT_FROM_EMAIL = 'peteroebello@gmail.com'  # Default email sender address
+EMAIL_HOST_USER = 'only1eden80@gmail.com'  # Your email
+EMAIL_HOST_PASSWORD = 'yfdevbfqahkjsygp'  # Your email password or app-specific password
+DEFAULT_FROM_EMAIL = 'only1eden80@gmail.com'  # Default email sender address

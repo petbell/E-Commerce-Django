@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h2>Payment Confirmation</h2>
+    <p>Dear Customer,</p>
+    <p>Your transaction was successful:</p>
+    <ul>
+        <li>Transaction Reference: {{ transaction_ref }}</li>
+        <li>Amount: {{ amount }} {{ currency }}</li>
+        <!---<li>Date: {{ date|date:"F d, Y H:i" }}</li> --->
+    </ul>
+    <p>Thank you for your transaction!</p>
+</body>
+</html>

@@ -11,6 +11,13 @@ from django.core.mail import send_mail
 import qrcode
 from telegram import Bot
 
+from django.core.mail import send_mail, EmailMultiAlternatives
+from django.conf import settings
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+
+
+
 
 secretKey = settings.FLW_SECRET_KEY
 secretHash = settings.FLW_SECRET_HASH
@@ -158,7 +165,7 @@ def shaEncryption(input):
 
 @require_http_methods(['GET', 'POST'])
 def payment_response(request):
-    if request.GET.get ('status') == 'completed':
+    if request.GET.get ('status') == 'successful':
         auth_token = secretKey 
         head = {'Authorization' : 'Bearer '+ auth_token}
         status=request.GET.get('status', None)
@@ -174,7 +181,7 @@ def payment_response(request):
         if response.status_code == 200:
             data = response.json()['data']
             json.dump(data, open('data.json', 'w'), indent=4)
-            print(data)
+            print(f" This is from PAYMENT RESPONSE: {data}")
             if (data['status'] == "successful" and data['amount'] == Transaction_detail.amount and data['currency'] == 'NGN'):
                     Transaction.objects.filter(tx_ref=tx_ref).update(status=data['status'],transaction_id =data['id'], payment_type=data['payment_type'] )
                     context = {'order_keys': data}
@@ -194,168 +201,79 @@ def payment_response(request):
     else:
         return HttpResponseBadRequest("Invalid request: status not successful")
     
-    
-    
-    
-@require_POST
-@csrf_exempt
-def webhook_flw (request):
-    #secretHash = settings.FLW_SECRET_HASH
-    #signature = request.headers.get("Verif-Hash")
-    #print (secretHash)
-    #print (f"Signature : {signature}")
-    #print (request.headers.get("verif-hash"))
-    #print (request.headers)
-    
-    
-    #if signature == None or (signature != secretHash):
-        #  Not from flutterwave; discard
-    #    return HttpResponse("Not from flutterwave", status = 401)
+def send_transaction_email(
+    recipient_email, 
+    subject, 
+    context,
+    template_name='emails/transaction_email.html'
+):
     try:
-        # Log the incoming request
-        print(f"Headers: {request.headers}")
-        print(f"Body: {request.body.decode('utf-8')}")
+        # Render HTML content
+        html_message = render_to_string(template_name, context)
         
-        # Access and decode the raw payload
-        raw_payload = request.body
-        payload = json.loads(raw_payload.decode('utf-8'))
-
-        # Log or save the payload (useful for debugging)
-        print(f"Webhook payload: {payload}")
-        with open("payload.json", "w") as out_file:
-            json.dump(payload, out_file, indent=4)
-
-        # Extract data from the payload
-        dataload = payload.get('data', {})
-        transaction_id = dataload.get('id')
-        status = dataload.get('status')
-        tx_ref = dataload.get('tx_ref')
-        amount = dataload.get('amount')
-        customer_name = dataload.get('customer', {}).get('name')
-        email = dataload.get('customer', {}).get('email')
-        phone = dataload.get('customer', {}).get('phone_number')
-        currency = dataload.get('currency')
-        payment_type = dataload.get('payment_type')
-
-        if not transaction_id or not status:
-            return JsonResponse({"error": "Missing transaction ID or status in payload"}, status=400)
-
-        # Check if the transaction already exists
-        existing_event = Transaction.objects.filter(transaction_id=str(transaction_id)).first()
-
-        if existing_event:
-            # If the status is already updated, no need to process again
-            if existing_event.status == status:
-                return JsonResponse({"message": "Duplicate event, already processed"}, status=200)
-
-            # Update the transaction if needed
-            existing_event.status = status
-            existing_event.save()
-         
-            
-        #else:
-            #it is always duplicating my records so i omitted the else block
-            # Create a new transaction record if it doesn't exist
-            #transaction, created = Transaction.objects.get_or_create(
-             #   transaction_id=transaction_id, defaults={
-              #      'status': status, 'tx_ref':tx_ref,
-               #     'amount': amount, 'customer_name': customer_name,
-                #    'email': email, 'phone': phone,
-                 #   'currency': currency, 'payment_type': payment_type
-                #})
-                
-                #transaction.save()
-            #if not created:
-             #   print (f"Transaction {transaction_id} already exists")
-            
-        orders = Order.objects.filter(transaction=existing_event)
-        order_details = []
-        for order in orders:
-            order_details.append({
-                'product': order.product.name,
-                'quantity': order.quantity,
-                'total_price': order.total_price,
-                })
-        print (order_details)
-        bot = Bot(token=settings.TELEGRAM_BOT_TOKEN)
-        bot.send_message(chat_id=settings.TELEGRAM_CHAT_ID, text=f"New order received: {order_details}")
+        # Plain text version
+        plain_message = strip_tags(html_message)
         
-                
-
-        return JsonResponse({"message": "Transaction processed successfully"}, status=200)
-
-    except json.JSONDecodeError:
-        return JsonResponse({"error": "Invalid JSON payload"}, status=400)
+        # Send email
+        send_mail(
+            subject,
+            plain_message,
+            settings.EMAIL_HOST_USER,
+            ["petbell@live.com"],
+            html_message=html_message,
+            fail_silently=False
+        )
     except Exception as e:
-        print(f"Error processing webhook: {e}")
-        return JsonResponse({"error": "Internal server error"}, status=500)
-    #try:
-     #   existing_event = Transaction.objects.filter(transaction_id=str(dataload['id'])).first()
-      #  current_transaction_id = existing_event.id
-
-    #except Transaction.DoesNotExist:
-    #    existing_event = None
+        print(f"Error sending email: {e}")
         
-    #if existing_event and existing_event.status == status:
-     #   return JsonResponse({}, status=200)
-    # the following unnecessary, transaction already verified
-    #transaction, created = Transaction.objects.update_or_create(transaction_id = payload['id'], 
-     #                                    defaults={
-      #                                       'status' : status,
-       #                                      'payment_type': payment_type,
-        #                                     'amount' : amount
-         #                                })
-    
-    #print(f"Existing: {current_transaction_id} ")
-    #process_event(latest_id)
-    #response = requests.post()
-    #send_test_email(payload)
-    # Get customer details
-    #customer_name = existing_event.customer_name
-    #customer_email = existing_event.email
-    #customer_phone = existing_event.phone
 
-    # Retrieve all orders related to the current transaction
-    #orders = Order.objects.filter(transaction=existing_event)
-    
-    # Prepare order details (products and quantities)
-  #  order_details = []
-   # for order in orders:
-    #    order_details.append({
-     #       'product': order.product.name,
-      #      'quantity': order.quantity,
-       #     'total_price': order.total_price,
-        #})
-    
-    # Print or log the details for testing purposes
-    #print(f"Customer Name: {customer_name}")
-    #print(f"Customer Email: {customer_email}")
-    #print(f"Customer Phone: {customer_phone}")
-    #print(f"Order Details: {order_details}")
-    
-    # Respond with a success message
-    #return JsonResponse({
-     #   'message': 'Webhook processed successfully',
-      #  'customer': {
-       #     'name': customer_name,
-        #    'email': customer_email,
-         #   'phone': customer_phone,
-       # },
-       #3 'orders': order_details,
-    #}, status=200)
-#def process_event(record_id):
-    # print (f" It all worked with : {payload}") 
-    #goods = Order.objects.get(transaction_id = record_id ) 
-    #send_welcome_email('petbell@live.com')
-    
-    
-def send_test_email(request):
+def send_test_email(custmer_email, amount):
     subject = 'Test Email'
-    message = 'This is a test email sent from Django.'
+    message = f'This is a test email sent from Django. Amount: {amount}'
     email_from = settings.EMAIL_HOST_USER  # or your desired sender email
-    recipient_list = ['petbell@example.com']  # List of recipients
+    recipient_list = [custmer_email]  # List of recipients
 
     # Send the email
     send_mail(subject, message, email_from, recipient_list)
 
-    #return HttpResponse('Email sent successfully!')
+    return HttpResponse('Email sent successfully!')
+    
+@require_POST
+@csrf_exempt
+def webhook_flw (request):
+    if request.method == 'POST':
+        secretHash = settings.FLW_SECRET_HASH
+        signature = request.headers.get("Verif-Hash")
+        print (secretHash)
+        print (f"Signature : {signature}")
+        print (request.headers.get("verif-hash"))
+    #print (request.headers)
+    
+    
+        if signature == None or (signature != secretHash):
+            #  Not from flutterwave; discard
+            return HttpResponse("Not from flutterwave", status = 401)
+        try:
+            data = json.loads(request.body)
+            # Log the incoming request
+            print(f"Headers: {request.headers}")
+            print(f"REQUEST Body: {request.body.decode('utf-8')}")
+            
+            if data.get('status') == 'successful':
+                tx_ref = data.get('tx_ref')
+                amount = data.get('amount') 
+                currency = data.get('currency')
+                print (f" Transaction reference is : {tx_ref} and amount is {amount} {currency}")
+                
+                #send_test_email(custmer_email="petbell@live.com", amount=amount)
+                print("Test email sent successfully.")
+                return HttpResponse("Webhook processed", status=200)
+        # Further processing can be done here
+                
+        except json.JSONDecodeError:
+            return HttpResponse("Invalid JSON", status=400)
+
+    return HttpResponse("Invalid request method", status=405)
+       
+    
+    
